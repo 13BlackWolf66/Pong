@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pong/ball.dart';
@@ -16,6 +17,8 @@ class HomePage extends StatefulWidget {
 enum Direction { up, down, left, right }
 
 class _HomePageState extends State<HomePage> {
+  Random r = Random();
+  bool direction = false;
   bool gameStarted = false;
   double ballX = 0;
   double ballY = 0;
@@ -83,8 +86,15 @@ class _HomePageState extends State<HomePage> {
                       (brickX - 0.2 + 0.2 * brickX.abs())) &&
                   (ballX <= (brickX + 0.2 + 0.2 * brickX.abs()))))) {
         ballDirectionX = Direction.up;
+
         score++;
         if (((score + 1) % 4) == 0) ballSpeed += 0.0003;
+
+        direction = r.nextBool();
+
+        if (direction) {
+          ballDirectionY = Direction.right;
+        } else {ballDirectionY = Direction.left;}
       }
       if (ballX <= -1) {
         ballDirectionY = Direction.right;
@@ -153,29 +163,27 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: Colors.black12,
         appBar: AppBar(
-          title: 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Best Score: $bestScore',
-                  style: GoogleFonts.turretRoad(
-                    fontSize: 25,
-                    color: Colors.white70,
-                    fontWeight: FontWeight.w600,
-                  ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Best Score: $bestScore',
+                style: GoogleFonts.turretRoad(
+                  fontSize: 25,
+                  color: Colors.white70,
+                  fontWeight: FontWeight.w600,
                 ),
-                Text(
-                  'Score: $score',
-                  style: GoogleFonts.turretRoad(
-                    fontSize: 25,
-                    color: Colors.white70,
-                    fontWeight: FontWeight.w600,
-                  ),
+              ),
+              Text(
+                'Score: $score',
+                style: GoogleFonts.turretRoad(
+                  fontSize: 25,
+                  color: Colors.white70,
+                  fontWeight: FontWeight.w600,
                 ),
-              ],
-            ),
-        
+              ),
+            ],
+          ),
           backgroundColor: Colors.black12,
         ),
         body: Center(
