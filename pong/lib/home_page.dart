@@ -66,6 +66,7 @@ class _HomePageState extends State<HomePage> {
       ballY = 0;
       brickX = 0;
       score = 0;
+      ballSpeed = 0.001;
     });
   }
 
