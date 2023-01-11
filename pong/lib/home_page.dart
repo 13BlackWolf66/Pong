@@ -23,8 +23,7 @@ class _HomePageState extends State<HomePage> {
   double ballX = 0;
   double ballY = 0;
   double brickX = 0;
-  double brickWidth =
-      0.4; // 2/5 = 0.4 because width of a brick == 1/5 width of a screen
+  double brickWidth = 0.4; // 2/5 = 0.4 because width of a brick == 1/5 width of a screen
   double ballSpeed = 0.001;
 
   int score = 0;
@@ -94,7 +93,9 @@ class _HomePageState extends State<HomePage> {
 
         if (direction) {
           ballDirectionY = Direction.right;
-        } else {ballDirectionY = Direction.left;}
+        } else {
+          ballDirectionY = Direction.left;
+        }
       }
       if (ballX <= -1) {
         ballDirectionY = Direction.right;
@@ -210,8 +211,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-// else if (ballY >= 0.85 && ((ballX<=0)?(brickX <= ballX+0.13 && brickX + brickWidth >= ballX):( brickX-0.13 >= ballX && brickX - brickWidth <= ballX)) ||
-//           ballY >= 1.2) {
-//         ballDirectionX = Direction.up;
-//(ballX<=brickX+brickWidth*(1-brickX)(ballX>=brickX+brickWidth*(1+brickX)))
-//(ballX>brickX-brickX.abs()*brickWidth)&&(ballX<brickX+brickX.abs()*brickWidth)
